@@ -1,15 +1,20 @@
 import sys
 import os
+import time
+import asyncio
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import logging
 import datetime
 import zoneinfo
+import telegram
+from telegram.error import Conflict
 from telegram.ext import (
     ApplicationBuilder,
     CommandHandler,
     CallbackQueryHandler,
     MessageHandler,
+    ContextTypes,
     filters
 )
 from config import load_config
@@ -192,8 +197,28 @@ def main():
     # Message Collector for saving custom text, photo, stickers
     app.add_handler(MessageHandler(filters.ALL & ~filters.COMMAND, admin_message_collector))
 
+    # Global Error Handler (Gracefully handles 409 Conflict during cloud rolling deploys)
+    async def global_error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+        err = context.error
+        if isinstance(err, Conflict):
+            logger.warning("Telegram 409 Conflict caught: waiting 8s for old cloud container to release connection...")
+            await asyncio.sleep(8)
+            return
+        logger.error("Unhandled bot exception:", exc_info=err)
+
+    app.add_error_handler(global_error_handler)
+
     print("✅ Bot is online and listening for commands! Press Ctrl+C to stop.")
-    app.run_polling(drop_pending_updates=True)
+    while True:
+        try:
+            app.run_polling(drop_pending_updates=True, bootstrap_retries=10)
+            break
+        except Conflict:
+            logger.warning("409 Conflict during polling bootstrap. Sleeping 8s before retrying...")
+            time.sleep(8)
+        except Exception as e:
+            logger.error(f"Polling error: {e}. Retrying in 5 seconds...")
+            time.sleep(5)
 
 
 if __name__ == "__main__":
