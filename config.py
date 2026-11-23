@@ -53,6 +53,12 @@ def load_config():
             for key, val in DEFAULT_CONFIG.items():
                 if key not in cfg:
                     cfg[key] = val
+
+            # Check if BOT_TOKEN is set via Cloud Environment Variable
+            env_token = os.environ.get("BOT_TOKEN")
+            if env_token and env_token.strip():
+                cfg["bot_token"] = env_token.strip()
+
             return cfg
     except Exception as e:
         print(f"Error loading {CONFIG_FILE}: {e}")
