@@ -1,0 +1,53 @@
+{
+    "bot_token": "8613706325:AAGNLLzNNZ7D4Zmx5Mshc9pD3u7PF8BGBhU",
+    "admin_ids": [
+        8368559177
+    ],
+    "channels": [
+        {
+            "channel_id": "-1003808999105",
+            "name": "Shreewin Prediction",
+            "game_title": "WINGO 30 SEC",
+            "interval_seconds": 30,
+            "current_round": 657,
+            "pattern_mode": "smart",
+            "is_active": true
+        },
+        {
+            "channel_id": "-1002073987044",
+            "name": "Channel (-1002073987044)",
+            "game_title": "WINGO 30 SEC",
+            "interval_seconds": 30,
+            "current_round": 560,
+            "pattern_mode": "smart",
+            "is_active": true
+        }
+    ],
+    "session_settings": {
+        "rounds_per_session": 6,
+        "round_wait_seconds": 30,
+        "next_round_delay": 5,
+        "win_rate": 0.8,
+        "session_times": [
+            "11:00",
+            "23:00"
+        ],
+        "pre_post_minutes_before": 30
+    },
+    "pre_post": {
+        "type": "text",
+        "file_id": null,
+        "caption": null,
+        "text": "🔥🔥 🔥🔥🔥🔥🔥\n\n❤️अभी जॉइन कीजिए मेरे लिंक से और ग्रुप के प्रेडिक्शन से  पैसा कमाइए. \n\n🫶Register Link - https://shreewin23.site/#/register?invitationCode=36467291608\n\n⭐️तो अभी रजिस्टर कीजिए और deposit कीजिए 1000 से 5000 रुपये और Roj गिफ्ट कोड आएगा Claim कीजिए.\n\n⚡️"
+    },
+    "post_post": {
+        "type": "sticker",
+        "file_id": "CAACAgUAAxkBAAOnawJ5UKJQ34oPwj6fwI_L6KfKPPUAAkITAAJmp9hXLYJ8l57rO9Y9BA",
+        "caption": null,
+        "text": null
+    },
+    "stickers": {
+        "win_sticker_id": "CAACAgUAAxkBAAObawJ2ivomDCbwHdwqpdrilfWQCOoAAmoSAAL2IslWYpFBlKEWcp89BA",
+        "loss_sticker_id": "CAACAgIAAxkBAAOZawJudUwXBdTavDZjqVyDK3iMdqMAArgAA_cCyA9GC5y04k4LOD0E"
+    }
+}
